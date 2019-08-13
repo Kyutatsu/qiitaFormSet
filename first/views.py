@@ -40,7 +40,9 @@ def make_test_modelformset(request):
     )
     max_id = TestModel.objects.all()[4].pk
     if request.method == 'POST':
-        #formset = TestModelFormSet(request.POST)
+        #formset = TestModelFormSet(request.POST,
+        #                       queryset=TestModel.objecs.none() 
+        #)
         formset = TestModelFormSet(request.POST,
         #     queryset=TestModel.objects.filter(text__startswith='a'), 
         queryset=TestModel.objects.filter(id__lt=max_id),

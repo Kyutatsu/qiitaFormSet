@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>inline formset test</title>
+  </head>
+  <body>
+    <main>
+      <h1>inlineformset_factory使用例</h1>
+      <form method="POST">
+        {% csrf_token %}
+        {{ formset }}
+        <button type="submit">button</button>
+      </form>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>diff type forms</title>
+  </head>
+  <body>
+    <main>
+      <h1>複数種類forms</h1>
+      <p>
+        複数種類のformを同時に表示するにはprefixが利用できる。
+        具体的にはコントロールのnameが"first_name"であるformに対し、
+        "prefix-first_name"のようになる。
+        ブラウザのインスペクタで確認する。
+      </p>
+
+      <form method="POST">
+        {% csrf_token %}
+        <h3>First_form: a</h3>
+        {{ first_a }}
+        <h3>First_form: b</h3>
+        {{ first_b }}
+        <h3>Second_form</h3>
+        {{ second }}
+        <button type="submit">submit</button>
+      </form>
+
+    </main>
+  </body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>multple formsets</title>
+  </head>
+
+  <body>
+    <main>
+      <h1>複数種類のFormSet</h1>
+      <p>formset間の名前を区別するため、prefixを利用します。</p>
+      <form method="POST">
+        {% csrf_token %}
+        <h4>FirstFormSets</h4>
+        {{ firstform }}
+        <br>
+        <h4>SecondFormSets</h4>
+        {{ secondform }}
+        <button type="submit">submit</button>
+      </form>
+    </main>
+  </body>
+</html>

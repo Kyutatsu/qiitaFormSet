@@ -16,7 +16,12 @@ def make_test_formset(request):
 
     # 通常のformと同様に処理できる。
     if request.method == 'POST':
-        formset = TestFormSet(request.POST)
+        formset = TestFormSet(request.POST,
+            initial=[
+                {'title': 'No1', 'date': '2019-01-01'},
+                {'title': 'No2', 'date': '2019-01-02'},
+            ]
+        )
         if formset.is_valid():
             data = repr(formset.cleaned_data)
             return HttpResponse(data)
@@ -69,7 +74,11 @@ def make_inline_formset(request, author_id):
             extra=2,
     )
     if request.method == 'POST':
-        formset = BookFormSet(data=request.POST, instance=author)
+        formset = BookFormSet(
+                data=request.POST,
+                instance=author,
+                queryset=Book.objects.none()
+        )
         if formset.is_valid():
             formset.save()
             return HttpResponseRedirect(author.get_absolute_url())

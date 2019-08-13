@@ -16,11 +16,9 @@ def make_test_formset(request):
 
     # 通常のformと同様に処理できる。
     if request.method == 'POST':
-        formset = TestFormSet(request.POST,
-            initial=[
+        formset = TestFormSet(request.POST, initial=[
                 {'title': 'No1', 'date': '2019-01-01'},
-                {'title': 'No2', 'date': '2019-01-02'},
-            ]
+                {'title': 'No2', 'date': '2019-01-02'}, ]
         )
         if formset.is_valid():
             data = repr(formset.cleaned_data)
@@ -45,12 +43,12 @@ def make_test_modelformset(request):
     )
     max_id = TestModel.objects.all()[4].pk
     if request.method == 'POST':
-        #formset = TestModelFormSet(request.POST,
-        #                       queryset=TestModel.objecs.none() 
-        #)
-        formset = TestModelFormSet(request.POST,
-        #     queryset=TestModel.objects.filter(text__startswith='a'), 
-        queryset=TestModel.objects.filter(id__lt=max_id),
+        # formset = TestModelFormSet(request.POST,
+        # queryset=TestModel.objecs.none()
+        # )
+        formset = TestModelFormSet(
+            request.POST,
+            queryset=TestModel.objects.filter(id__lt=max_id),
         )
         if formset.is_valid():
             formset.save()
@@ -59,8 +57,7 @@ def make_test_modelformset(request):
     else:
         # formset = TestModelFormSet(queryset=TestModel.objects.none())
         formset = TestModelFormSet(
-        #        queryset=TestModel.objects.filter(text__startswith='a'),
-        queryset=TestModel.objects.filter(id__lt=max_id),
+            queryset=TestModel.objects.filter(id__lt=max_id),
         )
     return render(request, 'first/form1.html', {'formset': formset})
 
@@ -88,6 +85,7 @@ def make_inline_formset(request, author_id):
                 queryset=Book.objects.none(),
         )
     return render(request, 'first/inline_formset.html', {'formset': formset})
+
 
 def make_diff_type_forms(request):
     # first_form_aとfirst_form_bは同じform(FirstForm)。

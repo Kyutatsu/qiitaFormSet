@@ -2,7 +2,6 @@ from django import forms
 from .models import TestModel
 
 
-
 class TestForm(forms.Form):
     title = forms.CharField(max_length=20)
     date = forms.DateField()
@@ -25,6 +24,7 @@ class TestRadioForm(forms.ModelForm):
 # prefix解説用
 class FirstForm(forms.Form):
     name = forms.CharField(max_length=10)
+
 
 class SecondForm(forms.Form):
     name = forms.CharField(max_length=10)

@@ -9,6 +9,7 @@ class TestModel(models.Model):
     def __str__(self):
         return self.text
 
+
 class Author(models.Model):
     name = models.CharField(max_length=20)
 
@@ -16,7 +17,8 @@ class Author(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('first:author', args=[str(self.pk),])
+        return reverse('first:author', args=[str(self.pk), ])
+
 
 class Book(models.Model):
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
@@ -24,4 +26,3 @@ class Book(models.Model):
 
     def __str__(self):
         return self.title
-
